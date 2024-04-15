@@ -17,6 +17,8 @@ RUN apt-get update \
     tmux \
     tree
 
+RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
 # Silence pip's warnings
 ENV PIP_ROOT_USER_ACTION=ignore \
     PIP_DISABLE_PIP_VERSION_CHECK=true
@@ -48,7 +50,7 @@ ENV DEBIAN_FRONTEND=dialog
 
 
 RUN git clone --depth 1 https://github.com/Ruth-Seven/InitLinux.git /root/tools && \
-	echo "----------------PLEASH ADD SSH KEY IN GITHUB---------------" \
+	echo "----------------PLEASH ADD SSH KEY IN GITHUB---------------" && \
 	echo "----------------Then run ./initLinux.sh"
 
 # Setup fish zsh 
