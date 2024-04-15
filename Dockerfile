@@ -56,3 +56,4 @@ RUN chsh -s $(which zsh)
 COPY ./config.fish /root/.config/fish/config.fish
 
 WORKDIR /root
+RUN ["/bin/zsh"]
