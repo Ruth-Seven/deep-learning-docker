@@ -13,7 +13,9 @@ RUN apt-get update \
     # HDF5
     hdf5-tools \
     # Fish shell
-    fish
+    zsh \ 
+    tmux \
+    tree
 
 # Silence pip's warnings
 ENV PIP_ROOT_USER_ACTION=ignore \
@@ -44,8 +46,13 @@ RUN echo "c.InteractiveShellApp.exec_lines = ['%load_ext autoreload', \
 
 ENV DEBIAN_FRONTEND=dialog
 
-# Setup fish shell 🐟
-RUN chsh -s $(which fish)
+
+RUN git clone --depth 1 https://github.com/Ruth-Seven/InitLinux.git /root/tools && \
+	echo "----------------PLEASH ADD SSH KEY IN GITHUB---------------" \
+	echo "----------------Then run ./initLinux.sh"
+
+# Setup fish zsh 
+RUN chsh -s $(which zsh)
 COPY ./config.fish /root/.config/fish/config.fish
 
 WORKDIR /root
