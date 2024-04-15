@@ -51,7 +51,7 @@ ENV DEBIAN_FRONTEND=dialog
 
 RUN git clone --depth 1 https://github.com/Ruth-Seven/InitLinux.git /root/tools && \
 	echo "----------------PLEASH ADD SSH KEY IN GITHUB---------------" && \
-	echo "----------------Then run ./initLinux.sh"
+	echo "----------------Then run ./initLinux.sh--------------------"
 
 # Setup fish zsh 
 RUN chsh -s $(which zsh)
