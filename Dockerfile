@@ -19,6 +19,9 @@ RUN apt-get update \
 
 RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
+RUN mkdir /root/tools
+RUN git clone --depth 1 https://github.com/rupa/z.git /root/tools/z
+
 # Silence pip's warnings
 ENV PIP_ROOT_USER_ACTION=ignore \
     PIP_DISABLE_PIP_VERSION_CHECK=true
@@ -49,13 +52,13 @@ RUN echo "c.InteractiveShellApp.exec_lines = ['%load_ext autoreload', \
 ENV DEBIAN_FRONTEND=dialog
 
 
-RUN git clone --depth 1 https://github.com/Ruth-Seven/InitLinux.git /root/tools && \
+RUN git clone --depth 1 https://github.com/Ruth-Seven/InitLinux.git /root/tools/InitLinux && \
 	echo "----------------PLEASH ADD SSH KEY IN GITHUB---------------" && \
 	echo "----------------Then run ./initLinux.sh--------------------"
 
 # Setup fish zsh 
 RUN chsh -s $(which zsh)
-COPY ./config.fish /root/.config/fish/config.fish
+# COPY ./config.fish /root/.config/fish/config.fishs
 
 WORKDIR /root
 RUN ["/bin/zsh"]
